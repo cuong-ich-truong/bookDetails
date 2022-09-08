@@ -27,6 +27,12 @@ public class BookController {
     }
 
     @MutationMapping
+    public Book createBook(@Argument("input") CreateBookInput newBook) {
+        Book toAdd = new Book("", newBook.getName(), newBook.getPageCount(), newBook.getAuthorId());
+        return Book.addBook(toAdd);
+    }
+
+    @MutationMapping
     public Book updateBook(@Argument String id, @Argument String name, @Argument int pageCount) {
         Book toUpdate = new Book(id, name, pageCount);
 
